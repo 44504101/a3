@@ -187,15 +187,15 @@ void ToolSpecificHardware_Initialise(void)
 
 	// Setup peripheral clocks and prescalers
 	CLOCKS_PeripheralClocksAllDisable();
-	CLOCKS_PeripheralLowSpeedPrescalerSet(PERIPHERAL_NO_DIVIDE);
-	CLOCKS_PeripheralHighSpeedPrescalerSet(PERIPHERAL_NO_DIVIDE);
+	CLOCKS_PeripheralLowSpeedPrescalerSet(0x02);
+	CLOCKS_PeripheralHighSpeedPrescalerSet(0x01);
 	CLOCKS_PeripheralClocksEnable(EPWM1_CLOCK);		// used for timer
 	CLOCKS_PeripheralClocksEnable(SCI_A_CLOCK);		// debug port
 	CLOCKS_PeripheralClocksEnable(SCI_B_CLOCK);		// rs485 port
     CLOCKS_PeripheralClocksEnable(GPIO_CLOCK);      // need this to be able to read back GPIO pins.
-//	CLOCKS_PeripheralClocksEnable(SPI_A_CLOCK);     // SPI port  À×¸ê 2022/6/13 Ìí¼Ó
-//    CLOCKS_PeripheralClocksEnable(XINTF_CLOCK);     // XINTF  À×¸ê 2022/6/14 Ìí¼Ó
-//    CLOCKS_PeripheralClocksEnable(I2C_A_CLOCK);     // I2C  À×¸ê 2022/6/14 Ìí¼Ó
+//	CLOCKS_PeripheralClocksEnable(SPI_A_CLOCK);     // SPI port  é›·æˆˆ 2022/6/13 æ·»åŠ 
+//    CLOCKS_PeripheralClocksEnable(XINTF_CLOCK);     // XINTF  é›·æˆˆ 2022/6/14 æ·»åŠ 
+//    CLOCKS_PeripheralClocksEnable(I2C_A_CLOCK);     // I2C  é›·æˆˆ 2022/6/14 æ·»åŠ 
 
 	// Open debug port (serial port A), set the baud rate to 921600
 	// and setup the receive buffer which is used by the receive interrupt.
@@ -232,15 +232,15 @@ void ToolSpecificHardware_Initialise(void)
 		HALT_FOR_TEST;	//lint !e527 !e960
 	}
 
-//	// Ìí¼ÓSPI×ÜÏß´ò¿ªº¯Êý  2022/6/13
+//	// æ·»åŠ SPIæ€»çº¿æ‰“å¼€å‡½æ•°  2022/6/13
 //    // Setup the SPI port for 8 bit operation and 2MHz clock.
 //    SPI_Open(8u);
 //    (void)SPI_BaudRateSet((uint32_t)58982400u, 2000000u);
 //
 //    // Setup the I2C port for 10kHz operation.
-//    (void)I2C_Open((uint32_t)58982400u, (uint32_t)10000u);   //À×¸êÌí¼Ó
+//    (void)I2C_Open((uint32_t)58982400u, (uint32_t)10000u);   //é›·æˆˆæ·»åŠ 
 //
-//    XINTFCONFIG_Initialise();                        //À×¸êÌí¼Ó   2022/06/14
+//    XINTFCONFIG_Initialise();                        //é›·æˆˆæ·»åŠ    2022/06/14
 
     // Initialise the GPIO now we've setup all of the peripherals.
 //    GPIOMUX_Initialise();
